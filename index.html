@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TaxSmart.ca – Your Canadian Tax Helper 2025</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- 🌐 Navigation Menu -->
+
+
+<!-- Calculator Container -->
+<div class="calculator-container" id="calculator">
+  
+  <!-- Header -->
+  <div class="header">
+    <img src="https://upload.wikimedia.org/wikipedia/en/c/cf/Flag_of_Canada.svg" alt="Canada Flag" class="flag">
+    <h1>TaxSmart.ca – Your Canadian Tax Helper 2025</h1>
+  </div>
+
+  <!-- Inputs -->
+  <div class="input-section">
+
+    <!-- Box 14 – Employment Income -->
+    <div class="slider-box">
+      <label for="incomeInput">
+        Box 14 – Employment Income
+        <span class="info-dot">ℹ️
+          <span class="tooltip-text">
+            Total employment income from your T4 slip. This is your gross salary before deductions.
+          </span>
+        </span>
+      </label>
+      <input type="number" id="incomeInput" min="0" max="500000" step="500" value="50000" oninput="updateIncomeFromBox(this.value)">
+      <input type="range" id="income" min="0" max="500000" step="500" value="50000" oninput="updateIncome(this.value)">
+      <div class="value-display">Value: $<span id="incomeValue">50,000</span></div>
+    </div>
+
+    <!-- Box 22 – Tax Deducted -->
+    <div class="slider-box">
+      <label for="taxInput">
+        Box 22 – Tax Deducted
+        <span class="info-dot">ℹ️
+          <span class="tooltip-text">
+            Total tax already deducted from your paychecks throughout the year.
+          </span>
+        </span>
+      </label>
+      <input type="number" id="taxInput" min="0" max="100000" step="100" value="8000" oninput="updateTaxFromBox(this.value)">
+      <input type="range" id="taxdeducted" min="0" max="100000" step="100" value="8000" oninput="updateTax(this.value)">
+      <div class="value-display">Value: $<span id="taxValue">8,000</span></div>
+    </div>
+
+    <!-- RRSP Contribution -->
+    <div class="slider-box">
+      <label for="rrspInput">
+        RRSP Contribution
+        <span class="info-dot">ℹ️
+          <span class="tooltip-text">
+            RRSP contributions reduce your taxable income and may increase your refund. Maximum limit depends on your income.
+          </span>
+        </span>
+      </label>
+      <input type="number" id="rrspInput" min="0" max="50000" step="500" value="0" oninput="updateRRSP(this.value)">
+      <input type="range" id="rrspRange" min="0" max="50000" step="500" value="0" oninput="updateRRSP(this.value)">
+      <div class="value-display">Value: $<span id="rrspValue">0</span></div>
+    </div>
+
+  </div>
+
+  <!-- Province Selection -->
+  <select id="provinceSelect">
+    <option value="Ontario">Ontario</option>
+    <option value="British Columbia">British Columbia</option>
+    <option value="Alberta">Alberta</option>
+    <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
+    <option value="Prince Edward Island">Prince Edward Island</option>
+    <option value="Nova Scotia">Nova Scotia</option>
+    <option value="New Brunswick">New Brunswick</option>
+    <option value="Manitoba">Manitoba</option>
+    <option value="Saskatchewan">Saskatchewan</option>
+    <option value="Yukon">Yukon</option>
+    <option value="Northwest Territories">Northwest Territories</option>
+    <option value="Nunavut">Nunavut</option>
+  </select>
+
+  <button onclick="calculateTax()">Calculate</button>
+
+  <!-- Result & Insight -->
+  <div class="result-section">
+    <h2>Result & Insight</h2>
+    <p id="resultMessage">Enter your income and deductions to see your refund or tax owing.</p>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<footer>
+  <p>© 2025 TaxSmart.ca 🇨🇦 — Made for Canadians</p>
+  <p><a href="#disclaimer" id="disclaimer-link">Disclaimer & Privacy</a></p>
+</footer>
+
+<!-- Hidden Disclaimer Section -->
+<section id="disclaimer" class="disclaimer">
+  <h2>⚠️ Disclaimer & Privacy</h2>
+  <p>
+    TaxSmart.ca provides <strong>estimates</strong> of your Canadian taxes. Not a substitute for professional tax advice.
+  </p>
+  <p>
+    We <em>do not</em> collect, store, or share your personal information. All calculations happen locally in your browser.
+  </p>
+  <button id="closeDisclaimer">Close</button>
+</section>
+
+<script src="script.js"></script>
+
+<!-- Disclaimer & Tooltip Scripts -->
+<script>
+  // Disclaimer Modal
+  const disclaimerLink = document.getElementById('disclaimer-link');
+  const disclaimer = document.getElementById('disclaimer');
+  const closeBtn = document.getElementById('closeDisclaimer');
+
+  disclaimerLink.addEventListener('click', function(e){
+    e.preventDefault();
+    disclaimer.style.display = 'block';
+  });
+
+  closeBtn.addEventListener('click', function(){
+    disclaimer.style.display = 'none';
+  });
+
+  window.addEventListener('click', function(e){
+    if(e.target === disclaimer){
+      disclaimer.style.display = 'none';
+    }
+  });
+</script>
+
+</body>
+</html>
